@@ -2,7 +2,7 @@ FROM ruby:2.2-alpine
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
-RUN gem install bundler -v 1.17.3
+
 
 RUN apk add --update --no-cache nodejs build-base libxml2-dev libxslt-dev
 RUN apk add --update --no-cache postgresql-client postgresql-dev ruby-json libcurl tzdata
@@ -13,7 +13,7 @@ WORKDIR /app
 COPY Gemfile ./Gemfile
 COPY Gemfile.lock ./Gemfile.lock
 
-RUN bundle install -j 20
+RUN gem install bundler -v 1.17.3
 COPY . .
 
 EXPOSE 3000
